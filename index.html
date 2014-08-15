@@ -6,16 +6,17 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Task', 'Hours per Day',"foo"],
+          ['Work',     11,5000],
+          ['Eat',      2,500],
+          ['Commute',  2,500],
+          ['Watch TV', 2,500],
+          ['Sleep',    7,500]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'My Daily Activities',
+          is3D:true
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -23,9 +24,10 @@
  // The select handler. Call the chart's getSelection() method
   function selectHandler() {
     var selectedItem = chart.getSelection()[0];
-    console.log(selectedItem);
+
     if (selectedItem) {
-        console.log(data);
+      console.log(data,selectedItem);
+        console.log(data.getValue(selectedItem.row,2));
       // var value = data.getValue(selectedItem.row, selectedItem.column);
       // alert('The user selected ' + value);
     }
